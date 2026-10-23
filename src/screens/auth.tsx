@@ -142,7 +142,7 @@ export function LoginScreen() {
     <KidsStage>
       <div className="h-full overflow-y-auto">
       <div className="space-y-4 px-5 pb-6 pt-8">
-        <BrandLogo variant="white" className="h-[72px]" />
+        <BrandLogo variant="white" className="h-28" />
         <h1 className="text-[28px] font-bold">{tx("Welcome back", "Qué gusto verte")}</h1>
         <p className="text-[15px] text-muted-foreground">{tx("Log in to continue to KiddoNest", "Entra para continuar en KiddoNest")}</p>
         <AppInput label={tx("Email or Phone", "Correo o teléfono")} autoComplete="username" inputMode="email" value={email} onChange={(event) => setEmail(event.target.value)} />
@@ -479,10 +479,6 @@ export function RegisterScreen() {
   const set = (key: string, value: string | boolean) => setForm((current) => ({ ...current, [key]: value }));
 
   const submit = () => {
-    if (form.password !== form.confirm) {
-      nav.toast(tx("Passwords do not match.", "Las contraseñas no coinciden."));
-      return;
-    }
     const email = form.email.trim() || `parent-${Date.now()}@kiddonest.app`;
     kiddo.register({
       firstName: form.firstName,
