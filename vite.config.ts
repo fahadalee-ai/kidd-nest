@@ -1,10 +1,11 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
-/** Public URL path (trailing slash). Must match Nginx `location` and `PREVIEW_URL` in preview.html. */
-const PRODUCTION_BASE = "/kidd-nest/";
+const onVercel = process.env.VERCEL === "1";
+/** Nginx serves the app under /kidd-nest/. Vercel serves it at the domain root. */
+const PRODUCTION_BASE = onVercel ? "/" : "/kidd-nest/";
 
 export default defineConfig({
-  cloudflare: false,
+  nitro: onVercel ? { preset: "vercel" } : false,
   vite: {
     // Subpath must match Nginx and preview.html; use this for dev/preview/build so PM2 `vite preview` matches assets.
     base: PRODUCTION_BASE,
