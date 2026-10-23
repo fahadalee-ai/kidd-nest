@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" fill="none">
+  <circle cx="40" cy="40" r="32" fill="#1FA89A"/>
+  <path d="M22 46c5 11 12 16 18 16s13-5 18-16c-5 3-11 4-18 4s-13-1-18-4z" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+  <path d="M28 44c2-9 7-16 12-18 5 2 10 9 12 18" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="52" cy="28" r="5" fill="#FF7A6B"/>
+  <text x="84" y="50" fill="#1F2A44" font-family="Poppins, Inter, sans-serif" font-size="32" font-weight="700">KiddoNest</text>
+</svg>
