@@ -470,18 +470,26 @@ export function RegisterScreen() {
     firstName: "",
     lastName: "",
     email: "",
+    phone: "",
+    address: "",
     password: "",
+    confirm: "",
     terms: false,
   });
   const set = (key: string, value: string | boolean) => setForm((current) => ({ ...current, [key]: value }));
 
   const submit = () => {
+    if (form.password !== form.confirm) {
+      nav.toast(tx("Passwords do not match.", "Las contraseñas no coinciden."));
+      return;
+    }
     const email = form.email.trim() || `parent-${Date.now()}@kiddonest.app`;
     kiddo.register({
       firstName: form.firstName,
       lastName: form.lastName,
       email,
-      phone: "",
+      phone: form.phone.trim(),
+      street: form.address.trim(),
       password: form.password,
       dob: "1990-01-01",
       relationship: "Parent",
@@ -506,7 +514,10 @@ export function RegisterScreen() {
           <AppInput label={tx("Last name", "Apellido")} value={form.lastName} autoComplete="family-name" onChange={(e) => set("lastName", e.target.value)} />
         </div>
         <AppInput label={tx("Email", "Correo")} type="email" autoComplete="email" value={form.email} onChange={(e) => set("email", e.target.value)} />
+        <AppInput label={tx("Phone number", "Teléfono")} type="tel" autoComplete="tel" value={form.phone} onChange={(e) => set("phone", e.target.value)} />
+        <AppInput label={tx("Address", "Dirección")} autoComplete="street-address" value={form.address} onChange={(e) => set("address", e.target.value)} />
         <AppInput label={tx("Password", "Contraseña")} type="password" autoComplete="new-password" value={form.password} onChange={(e) => set("password", e.target.value)} />
+        <AppInput label={tx("Confirm password", "Confirmar contraseña")} type="password" autoComplete="new-password" value={form.confirm} onChange={(e) => set("confirm", e.target.value)} />
         <CheckRow
           checked={form.terms}
           onChange={(v) => set("terms", v)}
@@ -532,6 +543,12 @@ export function RegisterScreen() {
             {tx("Google", "Google")}
           </AppButton>
         </div>
+        <p className="pb-6 text-center text-[15px]">
+          {tx("Already have an account?", "¿Ya tienes cuenta?")}{" "}
+          <button type="button" className="font-semibold text-[var(--teal-ink)]" onClick={() => nav.resetAuth({ name: "login" })}>
+            {tx("Log in", "Entrar")}
+          </button>
+        </p>
       </div>
     </div>
     </KidsStage>

@@ -35,6 +35,7 @@ export type RegisterInput = {
   lastName: string;
   email: string;
   phone: string;
+  street: string;
   password: string;
   dob: string;
   relationship: string;
@@ -217,7 +218,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
           phone: input.phone,
           dob: input.dob,
           relationship: input.relationship,
-          street: "",
+          street: input.street,
           apt: "",
           city: input.city,
           state: input.state,
